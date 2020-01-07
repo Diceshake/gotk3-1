@@ -4370,6 +4370,13 @@ func (v *FileFilter) AddPattern(pattern string) {
 	C.gtk_file_filter_add_pattern(v.native(), (*C.gchar)(cstr))
 }
 
+// AddMimeType is a wrapper around gtk_file_filter_add_mime_type()
+func (v *FileFilter) AddMimeType(pattern string) {
+	cstr := C.CString(pattern)
+	defer C.free(unsafe.Pointer(cstr))
+	C.gtk_file_filter_add_mime_type(v.native(), (*C.gchar)(cstr))
+}
+
 // AddPixbufFormats is a wrapper around gtk_file_filter_add_pixbuf_formats().
 func (v *FileFilter) AddPixbufFormats() {
 	C.gtk_file_filter_add_pixbuf_formats(v.native())
